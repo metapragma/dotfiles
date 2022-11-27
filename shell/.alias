@@ -51,6 +51,11 @@ alias nightly='/Applications/Firefox\ Nightly.app/Contents/MacOS/firefox'
 alias edge = '/Applications/Microsoft\ Edge.app/Contents/MacOS/Microsoft\ Edge'
 alias edgedev = '/Applications/Microsoft\ Edge\ Dev.app/Contents/MacOS/Microsoft\ Edge\ Dev'
 
+# Safari
+alias safari = ''
+alias spreview = '' 
+
+
 # IP addresses
 # alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 # alias localip="ipconfig getifaddr en0"
