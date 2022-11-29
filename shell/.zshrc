@@ -88,8 +88,12 @@ eval "$(zoxide init zsh)"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# turn on autosuggestions & syntax highlighting
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# turn on aliases from .aliases
+source $HOME/dotfiles/shell/.alias
 
 # pnpm
 export PNPM_HOME="/Users/robert/Library/pnpm"
