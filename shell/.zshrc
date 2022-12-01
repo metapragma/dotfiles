@@ -43,6 +43,7 @@ plugins=(
     zsh-autosuggestions
 )
 
+# for some reason needs to be sourced before the prompt_context call
 source $ZSH/oh-my-zsh.sh
 
 ZSH_TMUX_AUTOSTART=true
@@ -53,8 +54,6 @@ ZSH_THEME_TERM_TAB_TITLE_IDLE=%~
 
 # remove own and machine name from prompt
 prompt_context() {}
-
-eval "$(zoxide init zsh)"
 
 # User configuration
 
@@ -97,3 +96,6 @@ source $(brew --prefix nvm)/nvm.sh
 # pnpm
 export PNPM_HOME="/Users/robert/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
+
+# turn on zoxide
+eval "$(zoxide init zsh)"
