@@ -2,16 +2,13 @@
 # when migrating from bash
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# path to oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
-
 # zsh theme
 ZSH_THEME="agnoster"
 
 # omz update reminder
-zstyle ':omz:update' mode reminder 
+zstyle ':omz:update' mode reminder
 
-# Uncomment the following line if pasting URLs and other text is messed up.
+# Uncomment the following   line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # command autocorrection
@@ -32,33 +29,30 @@ HIST_STAMPS="dd.mm.yyyy"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 plugins=(
-    web-search 
-    git 
-    aliases 
-    colored-man-pages 
-    colorize 
-    command-not-found 
-    cp 
-    tmux 
-    rbw 
-    zoxide  
-    nvm 
+    web-search
+    git
+    aliases
+    colored-man-pages
+    colorize
+    command-not-found
+    cp
+    tmux
+    rbw
+    zoxide
+    nvm
     zsh-autosuggestions
 )
 
-ZSH_TMUX_AUTOSTART=true
-
-export NVM_DIR=~/.nvm   
-source $(brew --prefix nvm)/nvm.sh  
-
 source $ZSH/oh-my-zsh.sh
 
-# todo: fix zsh prompt (username:host:etc) 
+ZSH_TMUX_AUTOSTART=true
+
+# todo: fix zsh prompt (username:host:etc)
 ZSH_THEME_TERM_TITLE_IDLE=%~
 ZSH_THEME_TERM_TAB_TITLE_IDLE=%~
 
 # remove own and machine name from prompt
-prompt_context() {} 
+prompt_context() {}
 
 eval "$(zoxide init zsh)"
 
@@ -92,8 +86,13 @@ eval "$(zoxide init zsh)"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# turn on aliases from .aliases
+# turn on aliases from .alias
 source $HOME/dotfiles/shell/.alias
+
+# import...exports, which are useful variables
+source $HOME/dotfiles/shell/.exports
+
+source $(brew --prefix nvm)/nvm.sh
 
 # pnpm
 export PNPM_HOME="/Users/robert/Library/pnpm"
