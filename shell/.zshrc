@@ -97,5 +97,3 @@ source $(brew --prefix nvm)/nvm.sh
 export PNPM_HOME="/Users/robert/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
-# turn on zoxide
-eval "$(zoxide init zsh)"
