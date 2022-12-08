@@ -1,7 +1,6 @@
 
 # when migrating from bash
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # zsh theme
 ZSH_THEME="agnoster"
 
@@ -43,10 +42,13 @@ plugins=(
     zsh-autosuggestions
 )
 
-# for some reason needs to be sourced before the prompt_context call
-source $ZSH/oh-my-zsh.sh
+# import variables
+source $HOME/dotfiles/shell/.exports
 
+# oh-my-zsh needs to be sourced before the prompt_context call
+# tmux plugin settings need to bo set before oh-my-zsh is sourced
 ZSH_TMUX_AUTOSTART=true
+source $ZSH/oh-my-zsh.sh
 
 # todo: fix zsh prompt (username:host:etc)
 ZSH_THEME_TERM_TITLE_IDLE=%~
@@ -88,10 +90,10 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # turn on aliases from .alias
 source $HOME/dotfiles/shell/.alias
 
-# import...exports, which are useful variables
-source $HOME/dotfiles/shell/.exports
-
 source $(brew --prefix nvm)/nvm.sh
+
+# turn on zoxide
+eval "$(zoxide init zsh)"
 
 # pnpm
 export PNPM_HOME="/Users/robert/Library/pnpm"
