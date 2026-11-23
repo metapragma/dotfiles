@@ -1,11 +1,22 @@
-Host *
+# Added by OrbStack: 'orb' SSH host for Linux machines
+# This only works if it's at the top of ssh_config (before any Host blocks).
+# This won't be added again if you remove it.
+Include ~/.orbstack/ssh/config
 
-# automatically add all common hosts to the host file as they are connected to
-StrictHostKeyChecking no
+# Machine-specific hosts live outside this repo. ssh uses the first value it
+# finds for each option, so these must come before the shared defaults.
+Include ~/.ssh/config.local
 
-# Allow MacOS to use the keychain for SSH key passphrases
-IgnoreUnknown UseKeychain
+# Shared defaults
 Host *
-  AddKeysToAgent yes
-  UseKeychain yes
-  IdentityFile ~/.ssh/id_rsa
+    # Trust a host on first connect, but refuse if its key changes later.
+    StrictHostKeyChecking accept-new
+
+    # Store key passphrases in the macOS keychain.
+    IgnoreUnknown UseKeychain
+    UseKeychain yes
+    AddKeysToAgent yes
+
+    # Prefer the ed25519 key; keep RSA for hosts that only accept it.
+    IdentityFile ~/.ssh/id_ed25519
+    IdentityFile ~/.ssh/id_rsa
