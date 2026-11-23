@@ -2,6 +2,7 @@
 # Environment and PATH live in .zprofile.
 
 typeset -U path PATH
+: ${DOTFILES:=$HOME/dotfiles}
 
 # --- oh-my-zsh ---------------------------------------------------------------
 
@@ -60,7 +61,7 @@ setopt HIST_IGNORE_ALL_DUPS HIST_REDUCE_BLANKS
 bindkey "^[[1;3D" backward-word      # Option + Left
 bindkey "^[[1;3C" forward-word       # Option + Right
 
-source "$HOME/dotfiles/shell/.alias"
+source "$DOTFILES/zsh/.alias"
 
 # --- prompt and highlighting -------------------------------------------------
 

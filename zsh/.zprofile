@@ -3,9 +3,11 @@
 
 typeset -U path PATH
 
+export DOTFILES="$HOME/dotfiles"
+
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-source "$HOME/dotfiles/shell/.exports"
+source "$DOTFILES/zsh/.exports"
 
 # Put the default nvm Node on PATH, so global CLIs such as ng work
 # before nvm itself is loaded (it loads lazily in .zshrc).

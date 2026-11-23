@@ -1,0 +1,4 @@
+.DS_Store
+
+# Machine-specific files never belong in this public repo.
+*.local

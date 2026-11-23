@@ -1,0 +1,28 @@
+# Shared git settings, linked to ~/.config/git/config.
+# Name, email and other machine-specific settings stay in ~/.gitconfig,
+# which git reads after this file, so it wins on conflicts.
+
+[init]
+    defaultBranch = main
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # n and N move between diff sections
+    light = false      # set to true on a light terminal background
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true

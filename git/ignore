@@ -1,0 +1,21 @@
+# Global gitignore, linked to ~/.config/git/ignore.
+# Only OS and personal editor/tool files belong here. Project build output
+# (logs, archives, databases) belongs in each project's own .gitignore.
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Icon?
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Editors
+.history/
+*.swp
+
+# Claude Code personal settings
+**/.claude/settings.local.json
