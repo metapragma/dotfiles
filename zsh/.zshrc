@@ -16,7 +16,7 @@ HIST_STAMPS="dd.mm.yyyy"
 zstyle ':omz:plugins:nvm' lazy yes
 
 # Auto-start tmux only in standalone terminal apps, not in editor terminals.
-[[ $TERM_PROGRAM == (iTerm.app|Apple_Terminal) ]] && ZSH_TMUX_AUTOSTART=true
+[[ $TERM_PROGRAM == (ghostty|iTerm.app|Apple_Terminal) ]] && ZSH_TMUX_AUTOSTART=true
 
 # Angular CLI completion. `ng completion script` takes ~1.4 s, so cache it
 # in a directory that oh-my-zsh adds to fpath, and refresh it when ng changes.
