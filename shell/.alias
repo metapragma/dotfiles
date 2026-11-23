@@ -6,11 +6,9 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Documents/projects"
 alias g="git"
+alias python=python3
 
 colorflag="-G"
-
-# colorize output of cat
-alias cat="ccat"
 
 # List all files colorized in long format
 alias l="ls -lF ${colorflag}"
@@ -30,8 +28,8 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-# Enable aliases to be sudo’ed
-alias sudo='sudo '
+# Enable aliases to be sudo’ed, and skip autocorrection for sudo
+alias sudo='nocorrect sudo '
 
 # Get week number
 alias week='date +%V'
@@ -40,7 +38,7 @@ alias week='date +%V'
 # alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; sudo gem cleanup'
 
 # Copy my public key to the pasteboard
-alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | printf '=> Public key copied to pasteboard.\n'"
+alias pubkey="pbcopy < ~/.ssh/id_ed25519.pub && echo '=> Public key copied to pasteboard.'"
 
 # Chrome
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
@@ -101,9 +99,6 @@ alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
-# URL-encode strings
-alias urlencode='python3 -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1]);"'
-
 # Merge PDF files, preserving hyperlinks
 # Usage: `mergepdf input{1,2,3}.pdf`
 alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.pdf'
@@ -124,11 +119,6 @@ alias spoton="sudo mdutil -a -i on"
 # find . -name .gitattributes | map dirname
 alias map="xargs -n1"
 
-# lwp-request
-for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-	alias "${method}"="lwp-request -m '${method}'"
-done
-
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 # alias stfu="osascript -e 'set volume output muted true'"
 # alias pumpitup="osascript -e 'set volume output volume 100'"
@@ -137,11 +127,11 @@ done
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
 # alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
 # Reload the shell (i.e. invoke as a login shell)
 # alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+
+# Codex with full access and maximum reasoning
+alias cod='codex --dangerously-bypass-approvals-and-sandbox --search -m gpt-5.2 -c model_reasoning_effort="xhigh" -c model_reasoning_summary_format=experimental'

@@ -1,101 +1,70 @@
+# Interactive shell setup.
+# Environment and PATH live in .zprofile.
 
-# when migrating from bash
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-# zsh theme
-ZSH_THEME="agnoster"
+typeset -U path PATH
 
-# omz update reminder
+# --- oh-my-zsh ---------------------------------------------------------------
+
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME=""                         # the prompt comes from starship
 zstyle ':omz:update' mode reminder
-
-# Uncomment the following   line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS="true"
-
-# command autocorrection
 ENABLE_CORRECTION="true"
-
-# completion dots on longers ops
-COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# date format
 HIST_STAMPS="dd.mm.yyyy"
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
+# Load nvm on first use of nvm, node, npm, etc. Loading it eagerly costs ~0.8 s.
+zstyle ':omz:plugins:nvm' lazy yes
+
+# Auto-start tmux only in standalone terminal apps, not in editor terminals.
+[[ $TERM_PROGRAM == (iTerm.app|Apple_Terminal) ]] && ZSH_TMUX_AUTOSTART=true
+
+# Angular CLI completion. `ng completion script` takes ~1.4 s, so cache it
+# in a directory that oh-my-zsh adds to fpath, and refresh it when ng changes.
+if (( $+commands[ng] )); then
+  _ng_comp="$ZSH/cache/completions/_ng"
+  [[ $_ng_comp -nt $commands[ng] ]] || ng completion script >| $_ng_comp 2>/dev/null
+  unset _ng_comp
+fi
 
 plugins=(
-    web-search
-    git
-    aliases
-    colored-man-pages
-    colorize
-    command-not-found
-    cp
-    tmux
-    rbw
-    zoxide
-    nvm
-    zsh-autosuggestions
+  aliases
+  aws
+  brew
+  colored-man-pages
+  command-not-found
+  cp
+  docker
+  fzf
+  git
+  nmap
+  node
+  nvm
+  ssh
+  ssh-agent
+  timer
+  tmux
+  uv
+  zoxide
+  zsh-autosuggestions
 )
 
-# import variables
-source $HOME/dotfiles/shell/.exports
+source "$ZSH/oh-my-zsh.sh"
 
-# oh-my-zsh needs to be sourced before the prompt_context call
-# tmux plugin settings need to bo set before oh-my-zsh is sourced
-ZSH_TMUX_AUTOSTART=true
-source $ZSH/oh-my-zsh.sh
+# --- history -----------------------------------------------------------------
 
-# todo: fix zsh prompt (username:host:etc)
-ZSH_THEME_TERM_TITLE_IDLE=%~
-ZSH_THEME_TERM_TAB_TITLE_IDLE=%~
+HISTSIZE=100000
+SAVEHIST=100000
+setopt HIST_IGNORE_ALL_DUPS HIST_REDUCE_BLANKS
 
-# remove own and machine name from prompt
-prompt_context() {}
+# --- keys and aliases --------------------------------------------------------
 
-# User configuration
+bindkey "^[[1;3D" backward-word      # Option + Left
+bindkey "^[[1;3C" forward-word       # Option + Right
 
-# export MANPATH="/usr/local/man:$MANPATH"
+source "$HOME/dotfiles/shell/.alias"
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# --- prompt and highlighting -------------------------------------------------
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+eval "$(starship init zsh)"
 
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# turn on autosuggestions & syntax highlighting
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Must be sourced last.
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# turn on aliases from .alias
-source $HOME/dotfiles/shell/.alias
-
-source $(brew --prefix nvm)/nvm.sh
-
-# turn on zoxide
-eval "$(zoxide init zsh)"
-
-# pnpm
-export PNPM_HOME="/Users/robert/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
