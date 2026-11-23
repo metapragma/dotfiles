@@ -22,7 +22,7 @@ The shell expects the repo at `~/dotfiles`.
 | `zsh/` | `~/.zshrc`, `~/.zprofile` | oh-my-zsh setup, PATH, `.exports`, `.alias` |
 | `git/` | `~/.config/git/` | shared git config (delta, diff3) and global ignore |
 | `ssh/` | `~/.ssh/config` | shared SSH defaults |
-| `config/` | `~/.config/` | starship, Zed, gh |
+| `config/` | `~/.config/` | starship, Zed, gh, Neovim (kickstart.nvim) |
 | `tmux/` | `~/.tmux.conf` | tmux config and theme |
 | `vim/` | `~/.vimrc` | vim config |
 | `curl/` | `~/.curlrc` | curl defaults |

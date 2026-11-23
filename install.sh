@@ -23,6 +23,7 @@ LINKS=(
   "config/starship.toml     .config/starship.toml"
   "config/zed/settings.json .config/zed/settings.json"
   "config/gh/config.yml     .config/gh/config.yml"
+  "config/nvim              .config/nvim"
 )
 
 link() {
