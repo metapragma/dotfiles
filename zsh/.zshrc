@@ -12,6 +12,10 @@ zstyle ':omz:update' mode reminder
 ENABLE_CORRECTION="true"
 HIST_STAMPS="dd.mm.yyyy"
 
+# Paste instantly. The magic paste widgets insert pasted text one character at
+# a time, and syntax highlighting then redraws the line after each character.
+DISABLE_MAGIC_FUNCTIONS="true"
+
 # Load nvm on first use of nvm, node, npm, etc. Loading it eagerly costs ~0.8 s.
 zstyle ':omz:plugins:nvm' lazy yes
 
@@ -40,7 +44,6 @@ plugins=(
   node
   nvm
   ssh
-  ssh-agent
   timer
   tmux
   uv
